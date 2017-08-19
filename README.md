@@ -27,7 +27,7 @@ const keyCloakCerts = new KeyCloakCerts('https://my-keycloak.com', 'my-realm');
 // You can also pass the full URL instead, as a single argument:
 // 'https://my-keycloak.com/auth/realms/my-realm/protocol/openid-connect/certs'
 
-const publicKey = keyCloakCerts.get('my-kid')
+const publicKey = keyCloakCerts.fetch('my-kid')
 ```
 
 ## Example
@@ -54,7 +54,7 @@ app.use(async (ctx) => {
   const kid = jwt.decode(token, { complete: true }).header.kid;
 
   // fetch the PEM Public Key
-  const publicKey = await keyCloakCerts.get(kid);
+  const publicKey = await keyCloakCerts.fetch(kid);
 
   if (publicKey) {
     try {
