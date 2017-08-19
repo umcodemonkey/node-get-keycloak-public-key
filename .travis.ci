@@ -1,0 +1,8 @@
+language: node_js
+node_js:
+  - 8.4.0
+before_script:
+  - npm install -g eslint@4.3.0 eslint-plugin-import@2.7.0 eslint-plugin-react@7.1.0 eslint-plugin-jsx-a11y@5.1.1 eslint-config-airbnb@15.1.0
+script:
+  - eslint index.js test.js
+  - npm test
