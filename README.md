@@ -58,6 +58,10 @@ app.use(async (ctx) => {
 
   if (publicKey) {
     try {
+      // Verify and decode the token
+      const decoded = jwt.verify(token, publicKey);
+      ctx.body = decoded;
+    } catch (error) {
       // Token is not valid
       process.stderr.write(error.toString());
       ctx.status = 401;
